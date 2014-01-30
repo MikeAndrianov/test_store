@@ -24,8 +24,12 @@ ActiveAdmin.register_page "Dashboard" do
       end
 
       column do
-        panel "Info" do
-          para "Welcome to ActiveAdmin."
+        panel "Recent Categories" do
+          ul do
+            Category.last(10).map do |category|
+              li link_to(category.name, admin_category_path(category))
+            end
+          end
         end
       end
     end

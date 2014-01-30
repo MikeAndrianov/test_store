@@ -1,4 +1,4 @@
-ActiveAdmin.register Product do
+ActiveAdmin.register Category do
 
   
   # See permitted parameters documentation:
@@ -14,15 +14,6 @@ ActiveAdmin.register Product do
   #  permitted
   # end
 
-  permit_params :name, :price, :description
-
-  index do
-    column :name
-    column :description
-    column :price, :sortable => :price do |product|
-      number_to_currency product.price
-    end
-    default_actions
-  end
+  permit_params :name
   
 end
