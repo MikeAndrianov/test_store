@@ -1,4 +1,13 @@
-<h1>Listing products</h1>
+<h1>Listing products</h1> 
+
+<% content_for :sidebar do %>
+  <%= form_tag products_path, :method => :get, :class => "form-inline" do %>
+    <div class="form-group">
+      <%= text_field_tag :query, params[:query], :placeholder => "Search", :class => "form-control" %>
+    </div>
+      <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+  <% end %>
+<% end %>
 
 <table class="table">
   <thead>
@@ -17,9 +26,9 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.name %></td>
+        <td><%= link_to product.name, product %></td>
         <td><%= product.description %></td>
-        <td><%= product.price %></td>
+        <td><%= number_to_currency product.price %></td>
         <!--  
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
