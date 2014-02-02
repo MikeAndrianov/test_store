@@ -1,6 +1,9 @@
 class Product < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
+  # include Tire::Model::Search
+  # include Tire::Model::Callbacks
+
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   validates :name, :price, :presence => true
   validates :name, :uniqueness => true

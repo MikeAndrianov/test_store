@@ -41,10 +41,14 @@ gem "therubyracer"
 gem "less-rails"
 
 gem 'activeadmin', github: 'gregbell/active_admin'
-gem "ransack"
+# gem "ransack"
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'formtastic',          github: 'justinfrench/formtastic'
-gem "tire", git: "git://github.com/karmi/tire.git"
+#gem "tire", git: "git://github.com/karmi/tire.git"
+
+gem "elasticsearch", git: "git@github.com:elasticsearch/elasticsearch-ruby.git"
+gem "elasticsearch-model", git: "git@github.com:elasticsearch/elasticsearch-rails.git"
+gem "elasticsearch-rails", git: "git@github.com:elasticsearch/elasticsearch-rails.git"
 
 
 # Use ActiveModel has_secure_password
