@@ -24,5 +24,6 @@ ActiveAdmin.register Product do
     end
     default_actions
   end
-  
+
+
 end

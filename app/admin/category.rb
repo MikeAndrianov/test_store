@@ -14,6 +14,25 @@ ActiveAdmin.register Category do
   #  permitted
   # end
 
-  permit_params :name
+  
+
+  permit_params :name, :parent_id
+
+  index do
+    column :name
+    column :parent_id do |i|
+      Category.find(i.parent_id).name if i.parent_id
+    end
+    default_actions
+  end
+
+  form do |f|
+    f.inputs "Details", :class => "small_form" do
+      f.input :name
+      f.input :parent_id,   :label => "Parent Category",:as => :select, :collection => f.template.nested_set_options(Category, @category) {|i| "#{'-' * i.level} #{i.name}" }
+    end
+
+    f.actions
+  end
   
 end

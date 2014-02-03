@@ -1,0 +1,37 @@
+<h1>Categories:</h1> 
+
+<% content_for :sidebar do %>
+  <%= form_tag categories_path, :method => :get, :class => "form-inline" do %>
+    <div class="form-group">
+      <%= text_field_tag :query, params[:query], :placeholder => "Search", :class => "form-control" %>
+    </div>
+      <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+  <% end %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.name, category %> --- <%= category.ancestors.map &:name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% Category.roots.each do |category| %>
+  <h3> <%= category.name %> </h3>
+
+  <%= render :partial => 'subcategories', :locals => {:category => category} %>
+<% end %>
+
+<br>
+
+<%= link_to 'New Category', new_category_path %>

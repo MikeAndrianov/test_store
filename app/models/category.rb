@@ -1,5 +1,7 @@
 class Category < ActiveRecord::Base
-   validates :name, :presence => true
-   validates :name, :uniqueness => true
+  acts_as_nested_set
+
+  validates :name, :presence => true
+  validates :name, :uniqueness => true
 
 end

@@ -1,0 +1,7 @@
+<ul>
+  <% category.children.each do |subcategory| %>
+    <li> <%= subcategory.name %> </li>
+
+    <%= render :partial => 'subcategories', :locals => {:category => subcategory} %>
+  <% end %>
+</ul>

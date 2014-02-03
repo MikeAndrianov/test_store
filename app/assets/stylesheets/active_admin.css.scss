@@ -15,3 +15,20 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+#main_content form{
+  .small_form{
+    input{
+      max-width: 350px;
+    }
+
+    label{
+      max-width: 180px;
+    }
+  }
+}
+
+.breadcrumb{
+  font-size: 16px;
+  font-weight: bold;
+}
