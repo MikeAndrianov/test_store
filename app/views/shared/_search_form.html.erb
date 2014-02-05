@@ -1,0 +1,9 @@
+<% content_for :search_form do %>
+  <%= form_tag products_path, :method => :get, :class => "navbar-form navbar-right" do %>
+    <div class="form-group">
+      <%= text_field_tag :query, params[:query], :placeholder => "Search", :class => "form-control" %>
+      <%= hidden_field_tag :category, params[:category] %>
+    </div>
+      <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+  <% end %>
+<% end %>

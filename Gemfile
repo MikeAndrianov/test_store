@@ -52,6 +52,9 @@ gem "elasticsearch-rails", git: "git@github.com:elasticsearch/elasticsearch-rail
 
 gem "awesome_nested_set"
 
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -15,11 +15,9 @@
     
     <%= nav_tabs({"Catalog" => categories_path, "Products" => products_path, "Admin Panel" => admin_root_path}) %>
 
-    <form class="navbar-form navbar-right" role="search">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Global Search">
-      </div>
-      <button type="submit" class="btn btn-default">Search</button>
-    </form>
+
+    <%= yield :search_form %>
+
+
   </div><!-- /.navbar-collapse -->
 </nav>

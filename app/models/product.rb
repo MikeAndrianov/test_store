@@ -12,8 +12,18 @@ class Product < ActiveRecord::Base
   has_many :categorizations, :dependent => :destroy
   has_many :categories, :through => :categorizations
 
-  accepts_nested_attributes_for :categorizations #, :allow_destroy => true
+  accepts_nested_attributes_for :categorizations
 
+  scope :with_category, lambda { |category_id| 
+    return {} if category_id.blank?
 
- 
+    joins(:categorizations => :category).where('categorizations.category_id = ?', category_id).uniq
+  }
+
+  scope :simple_search, lambda { |query|
+    return {} if query.blank?
+
+    where('products.name LIKE ? OR price LIKE ? OR description LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
+  }
+
 end
