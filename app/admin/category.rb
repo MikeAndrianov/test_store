@@ -29,7 +29,7 @@ ActiveAdmin.register Category do
   form do |f|
     f.inputs "Details", :class => "small_form" do
       f.input :name
-      f.input :parent_id,   :label => "Parent Category",:as => :select, :collection => f.template.nested_set_options(Category, @category) {|i| "#{'-' * i.level} #{i.name}" }
+      f.input :parent_id, :label => "Parent Category",:as => :select, :collection => f.template.nested_set_options(Category) {|i| "#{'-' * i.level} #{i.name}" }
     end
 
     f.actions

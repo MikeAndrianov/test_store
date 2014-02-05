@@ -1,22 +1,17 @@
-<h1 class="">Catalog</h1> 
+<div class="catalog">
+  <h1>Catalog</h1> 
 
-<% content_for :sidebar do %>
-  <%= form_tag categories_path, :method => :get, :class => "form-inline" do %>
-    <div class="form-group">
-      <%= text_field_tag :query, params[:query], :placeholder => "Search", :class => "form-control" %>
+  <%= render :partial => '/shared/search_form' %>
+
+  <% Category.roots.each do |category| %>
+    <div class="col-md-4">
+      <h3> <%= link_to category.name, products_path(:category => category.id)  %> </h3>
+
+      <%= render :partial => 'subcategories', :locals => {:category => category} %>
     </div>
-      <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
   <% end %>
-<% end %>
 
-<% Category.roots.each do |category| %>
-  <div class="col-md-4">
-    <h3> <%= category.name %> </h3>
+  <%= clear '', :height => 45 %>
 
-    <%= render :partial => 'subcategories', :locals => {:category => category} %>
-  </div>
-<% end %>
-
-<%= clear '', :height => 45 %>
-
-<%= link_to 'New Category', new_category_path %>
+  <%= link_to 'New Category', new_category_path %>
+</div>
