@@ -5331,17 +5331,17 @@ a.thumbnail.active {
   color: inherit;
 }
 
-.alert-success {
+.alert-notice, .alert-success {
   color: #3c763d;
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
 
-.alert-success hr {
+.alert-notice, .alert-success hr {
   border-top-color: #c9e2b3;
 }
 
-.alert-success .alert-link {
+.alert-notice, .alert-success .alert-link {
   color: #2b542c;
 }
 

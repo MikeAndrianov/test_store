@@ -1,4 +1,4 @@
-<h1>Categories:</h1> 
+<h1 class="">Catalog</h1> 
 
 <% content_for :sidebar do %>
   <%= form_tag categories_path, :method => :get, :class => "form-inline" do %>
@@ -9,29 +9,14 @@
   <% end %>
 <% end %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= link_to category.name, category %> --- <%= category.ancestors.map &:name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
 <% Category.roots.each do |category| %>
-  <h3> <%= category.name %> </h3>
+  <div class="col-md-4">
+    <h3> <%= category.name %> </h3>
 
-  <%= render :partial => 'subcategories', :locals => {:category => category} %>
+    <%= render :partial => 'subcategories', :locals => {:category => category} %>
+  </div>
 <% end %>
 
-<br>
+<%= clear '', :height => 45 %>
 
 <%= link_to 'New Category', new_category_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202202014) do
+ActiveRecord::Schema.define(version: 20140204131348) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -56,6 +56,19 @@ ActiveRecord::Schema.define(version: 20140202202014) do
   end
 
   add_index "categories", ["parent_id", "lft", "rgt"], name: "index_categories_on_parent_id_and_lft_and_rgt"
+
+  create_table "categorizations", force: true do |t|
+    t.integer "category_id"
+    t.integer "product_id"
+  end
+
+  create_table "product_categories", id: false, force: true do |t|
+    t.integer "category_id", null: false
+    t.integer "product_id",  null: false
+  end
+
+  add_index "product_categories", ["category_id"], name: "index_product_categories_on_category_id"
+  add_index "product_categories", ["product_id", "category_id"], name: "index_product_categories_on_product_id_and_category_id"
 
   create_table "products", force: true do |t|
     t.string   "name"
