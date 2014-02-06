@@ -14,6 +14,13 @@ ActiveAdmin.register Category do
   #  permitted
   # end
 
+  before_filter :set_category, only: [:show, :edit, :update, :destroy]
+
+  controller do
+    def set_product
+      @category = Category.find_by_slug(params[:id])
+    end
+  end
   
 
   permit_params :name, :parent_id

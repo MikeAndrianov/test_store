@@ -26,20 +26,6 @@ ActiveAdmin.register Product do
     end
   end
 
-
-  # member_action :show do
-  #   @product = Product.find_by_slug(params[:id])
-  # end
-
-  # member_action :edit do
-  #   @product = Product.find_by_slug(params[:id])
-  # end
-
-  # member_action :update do
-  #   @product = Product.find_by_slug(params[:id])
-  # end
-
-
   index do
     column :name
     column :description
