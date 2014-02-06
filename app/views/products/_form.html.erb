@@ -21,7 +21,7 @@
     <div class="form-group">
       <%= f.fields_for :categorizations do |f_c| %>
         <%= f_c.label :category_id, "Category" %>
-        <%= f_c.select :category_id, Category.all.collect {|c| [c.name, c.id]}, {}, {:class => "form-control"} %>
+        <%= f_c.select :category_id, nested_set_options(Category){|i| "#{'-' * i.level} #{i.name}"}, {}, {:class => "form-control"} %>
       <% end %>
     </div>
 

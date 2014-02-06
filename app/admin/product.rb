@@ -33,8 +33,8 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :description
       f.input :price
-      f.input :categories, :label => "Category",:as => :select, :multiple => false, 
-                           :collection => f.template.nested_set_options(Category) {|i| "#{'-' * i.level} #{i.name}" }
+      f.input :categories, :label => "Category",:as => :select, :multiple => false, :include_blank => false,
+                           :collection => f.template.nested_set_options(Category){|i| "#{'-' * i.level} #{i.name}" }
     end
 
     f.actions

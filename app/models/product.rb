@@ -5,6 +5,8 @@ class Product < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  after_save :assign_product_to_parent_categories
+
   validates :name, :price, :presence => true
   validates :name, :uniqueness => true
   validates :price, :numericality => {:greater_than_or_equal_to => 0.01}
@@ -25,5 +27,19 @@ class Product < ActiveRecord::Base
 
     where('products.name LIKE ? OR price LIKE ? OR description LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
   }
+
+  # Returns Category's leaf which was assigned to Product
+  #
+  def category
+    self.categories.order('updated_at DESC').first
+  end
+
+  protected
+
+  def assign_product_to_parent_categories
+    category.ancestors.each do |parent_category|
+      Categorization.new.update_attributes(:product_id => id, :category_id => parent_category.id)
+    end
+  end
 
 end
