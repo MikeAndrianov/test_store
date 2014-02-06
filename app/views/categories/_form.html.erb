@@ -9,6 +9,7 @@
     </div>
 
     <div class="form-group">
+      <%= f.label :parent_id, "Parent Category", :class => 'control-label' %><br>
       <%= f.select :parent_id, nested_set_options(Category, @category){|i| "#{'-' * i.level} #{i.name}" }, {:include_blank => true}, {:class => "form-control"} %>
     </div>
 

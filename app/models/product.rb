@@ -28,20 +28,24 @@ class Product < ActiveRecord::Base
   scope :simple_search, lambda { |query|
     return {} if query.blank?
 
-    where('products.name LIKE ? OR price LIKE ? OR description LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
+    where('"products"."name" ~* ? OR "products"."description" ~* ?', query, query)
   }
 
   # Returns Category's leaf which was assigned to Product
   #
   def category
-    self.categories.order('updated_at DESC').first
+    categories.order('updated_at DESC').first
   end
 
   protected
 
   def assign_product_to_parent_categories
+    #Remove all previous categorizations for product except last updated 
+    #
+    Categorization.delete_all(["product_id = ? AND category_id != ?", id, category.id])
+
     category.ancestors.each do |parent_category|
-      Categorization.new.update_attributes(:product_id => id, :category_id => parent_category.id)
+      Categorization.find_or_create_by_product_id_and_category_id(id, parent_category.id)
     end
   end
 

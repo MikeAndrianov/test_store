@@ -27,6 +27,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @categorization = Categorization.find_all_by_product_id_and_category_id(@product.id, @product.category.id)
   end
 
   # POST /products

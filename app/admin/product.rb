@@ -29,8 +29,8 @@ ActiveAdmin.register Product do
   index do
     column :name
     column :description
-    column "Category", :category_ids do |i|
-      Category.find(i.category_ids.last).name
+    column "Category", :category_ids do |product|
+      product.category.name
     end
     column :price, :sortable => :price do |product|
       number_to_currency product.price

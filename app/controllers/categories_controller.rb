@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
         format.json { render action: 'show', status: :created, location: @category }
       else
         format.html { render action: 'new' }
@@ -62,12 +62,11 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_category
-      @category = Category.find_by_slug(params[:slug])
+      @category = Category.find_by_slug(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:name, :parent_id)
     end

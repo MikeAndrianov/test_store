@@ -1,6 +1,6 @@
 <ul>
   <% category.children.each do |subcategory| %>
-    <li> <%= subcategory.name %> </li>
+    <li> <%= link_to subcategory.name, products_path(:category => subcategory.slug)  %> </li>
 
     <%= render :partial => 'subcategories', :locals => {:category => subcategory} %>
   <% end %>
