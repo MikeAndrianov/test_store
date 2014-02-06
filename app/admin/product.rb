@@ -14,7 +14,31 @@ ActiveAdmin.register Product do
   #  permitted
   # end
 
+
   permit_params :name, :price, :description, :category_ids
+
+  
+  before_filter :set_product, only: [:show, :edit, :update, :destroy]
+
+  controller do
+    def set_product
+      @product = Product.find_by_slug(params[:id])
+    end
+  end
+
+
+  # member_action :show do
+  #   @product = Product.find_by_slug(params[:id])
+  # end
+
+  # member_action :edit do
+  #   @product = Product.find_by_slug(params[:id])
+  # end
+
+  # member_action :update do
+  #   @product = Product.find_by_slug(params[:id])
+  # end
+
 
   index do
     column :name

@@ -111,6 +111,8 @@ GEM
     execjs (2.0.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    friendly_id (5.0.2)
+      activerecord (~> 4.0.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -232,6 +234,7 @@ DEPENDENCIES
   elasticsearch-model!
   elasticsearch-rails!
   formtastic!
+  friendly_id
   inherited_resources!
   jbuilder (~> 1.2)
   jquery-rails

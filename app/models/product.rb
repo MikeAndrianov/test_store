@@ -2,6 +2,9 @@ class Product < ActiveRecord::Base
   # include Tire::Model::Search
   # include Tire::Model::Callbacks
 
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
@@ -16,10 +19,10 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :categorizations
 
-  scope :with_category, lambda { |category_id| 
-    return {} if category_id.blank?
+  scope :with_category, lambda { |category_slug| 
+    return {} if category_slug.blank?
 
-    joins(:categorizations => :category).where('categorizations.category_id = ?', category_id).uniq
+    joins(:categorizations => :category).where('categorizations.category_id = ?', Category.find_by_slug(category_slug).id).uniq
   }
 
   scope :simple_search, lambda { |query|

@@ -6,6 +6,8 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# gem 'pg', '0.17.1'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -54,6 +56,8 @@ gem "awesome_nested_set"
 
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
+
+gem 'friendly_id'
 
 
 # Use ActiveModel has_secure_password
