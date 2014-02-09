@@ -13,6 +13,24 @@
       <%= f.select :parent_id, nested_set_options(Category, @category){|i| "#{'-' * i.level} #{i.name}" }, {:include_blank => true}, {:class => "form-control"} %>
     </div>
 
+    <%= clear nil, :height => 20 %>
+
+    <div class="additional-fields">
+      <h3> Additional fields </h3>
+
+      <% if @category.additional_fields %>
+        <% @category.additional_fields.try(:each) do |key, value| %>
+          <%= render :partial => "additional_field", :locals => {:key => key, :value => value} %>
+        <% end %>
+      <% else %>
+        <%= render :partial => "additional_field" %>
+      <% end %>
+
+    </div>
+
+    <%= link_to "Add field", edit_category_path(@category), :class => "btn btn-success add-field right", :remote => true %>
+
+    <%= clear %>
     
     <div class="actions">
       <%= f.submit 'Save', :class => 'btn btn-default' %>

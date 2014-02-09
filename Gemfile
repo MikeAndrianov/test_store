@@ -7,6 +7,7 @@ gem 'rails', '4.0.0'
 gem 'sqlite3'
 
 gem 'pg', '0.17.1'
+# gem 'activerecord-postgres-hstore'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -16,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

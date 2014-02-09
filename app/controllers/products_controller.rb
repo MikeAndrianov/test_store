@@ -5,14 +5,9 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-      if params[:query]
-        @products = Product.with_category(params[:category])
-                           .simple_search(params[:query])
-                           .paginate(:page => params[:page], :per_page => 10)
-      else
-        @products = Product.all.with_category(params[:category])
-                           .paginate(:page => params[:page], :per_page => 10)
-      end
+    @products = Product.with_category(params[:category])
+                       .simple_search(params[:query])
+                       .paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /products/1

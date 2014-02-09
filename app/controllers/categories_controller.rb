@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :filter_params_from_additional_fields, only: [:create, :update]
 
   # GET /categories
   # GET /categories.json
@@ -19,6 +20,10 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /categories
@@ -68,6 +73,14 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:name, :parent_id)
+      #params.require(:category).permit(:name, :parent_id)
+      params.require(:category).permit!
+    end
+
+    def filter_params_from_additional_fields
+
+      params[:category][:additional_fields] = params[:category][:additional_fields].delete_if{|key, value| key.empty? || value.empty? }
+
+      puts params[:category][:additional_fields]
     end
 end

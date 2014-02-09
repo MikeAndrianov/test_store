@@ -31,6 +31,17 @@ class Product < ActiveRecord::Base
     where('"products"."name" ~* ? OR "products"."description" ~* ?', query, query)
   }
 
+
+  %w[camera rating].each do |key|
+    define_method(key) do
+      additional_fields && additional_fields[key]
+    end
+    
+    define_method("#{key}=") do |value|
+      self.additional_fields = (additional_fields || {}).merge(key => value)
+    end
+  end
+
   # Returns Category's leaf which was assigned to Product
   #
   def category

@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206122537) do
+ActiveRecord::Schema.define(version: 20140207160007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -57,8 +58,10 @@ ActiveRecord::Schema.define(version: 20140206122537) do
     t.integer  "lft"
     t.integer  "rgt"
     t.string   "slug"
+    t.hstore   "additional_fields"
   end
 
+  add_index "categories", ["additional_fields"], name: "categories_additional_fields", using: :gin
   add_index "categories", ["parent_id", "lft", "rgt"], name: "index_categories_on_parent_id_and_lft_and_rgt", using: :btree
   add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
 
@@ -74,8 +77,10 @@ ActiveRecord::Schema.define(version: 20140206122537) do
     t.datetime "updated_at"
     t.text     "description"
     t.string   "slug"
+    t.hstore   "additional_fields"
   end
 
+  add_index "products", ["additional_fields"], name: "products_additional_fields", using: :gin
   add_index "products", ["slug"], name: "index_products_on_slug", using: :btree
 
 end

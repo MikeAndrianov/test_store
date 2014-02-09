@@ -1,0 +1,8 @@
+<div class="additional-field col-lg-12 <%= 'hide' if @category.additional_fields %>">
+  <div class="input-group form-group">
+    <%= text_field_tag "category[additional_fields][]", '', :class => 'form-control dynamic-name-attr-changing'  %>
+    <span class="input-group-btn remove-field">
+      <%= link_to "x", "#", :class => "btn btn-danger" %>
+    </span>
+  </div>
+</div>
