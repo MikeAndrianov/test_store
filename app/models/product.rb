@@ -21,15 +21,11 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :categorizations
 
   scope :with_category, lambda { |category_slug| 
-    return {} if category_slug.blank?
-
-    joins(:categorizations => :category).where('categorizations.category_id = ?', Category.find_by_slug(category_slug).id).uniq
+    joins(:categorizations => :category).where('categorizations.category_id = ?', Category.find_by_slug(category_slug).id).uniq unless category_slug.blank?
   }
 
   scope :simple_search, lambda { |query|
-    return {} if query.blank?
-
-    where('"products"."name" ~* ? OR "products"."description" ~* ?', query, query)
+    where('"products"."name" ~* ? OR "products"."description" ~* ?', query, query) unless query.blank?
   }
 
 

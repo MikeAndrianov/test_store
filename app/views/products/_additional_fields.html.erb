@@ -1,10 +1,6 @@
 <% @obj_with_additional_fields.nested_additional_fields.try :each do |key, value| %>
   <div class="form-group">
     <%= label_tag "product[additional_fields][#{key}]", key, :class => 'control-label' %><br>
-    <% if @product.new_record? %>
-      <%= text_field_tag "product[additional_fields][#{key}]", '', :class => 'form-control'  %>
-    <% else %>
-      <%= text_field_tag "product[additional_fields][#{key}]", @product.additional_fields[key], :class => 'form-control'  %>
-    <% end %>
+    <%= text_field_tag "product[additional_fields][#{key}]", @product.new_record? ? '' : @product.additional_fields[key], :class => 'form-control'  %>
   </div>
 <% end %>
