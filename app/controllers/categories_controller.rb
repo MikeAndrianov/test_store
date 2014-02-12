@@ -78,9 +78,6 @@ class CategoriesController < ApplicationController
     end
 
     def filter_params_from_additional_fields
-
       params[:category][:additional_fields] = params[:category][:additional_fields].delete_if{|key, value| key.empty? || value.empty? }
-
-      puts params[:category][:additional_fields]
     end
 end

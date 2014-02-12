@@ -20,10 +20,10 @@
 
       <% if @category.additional_fields %>
         <% @category.additional_fields.try(:each) do |key, value| %>
-          <%= render :partial => "additional_field", :locals => {:key => key, :value => value} %>
+          <%= render :partial => "additional_field", :locals => { :key => key, :value => value } %>
         <% end %>
       <% else %>
-        <%= render :partial => "additional_field" %>
+        <%= render :partial => "additional_field", :locals => { :key => nil, :value => nil } %>
       <% end %>
 
     </div>

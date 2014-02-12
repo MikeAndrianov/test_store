@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
 
   after_save :assign_product_to_parent_categories
+  # after_create :assign_additional_fields
 
   validates :name, :price, :presence => true
   validates :name, :uniqueness => true
@@ -32,23 +33,24 @@ class Product < ActiveRecord::Base
   }
 
 
-  %w[camera rating].each do |key|
-    define_method(key) do
-      additional_fields && additional_fields[key]
-    end
-    
-    define_method("#{key}=") do |value|
-      self.additional_fields = (additional_fields || {}).merge(key => value)
-    end
-  end
-
-  # Returns Category's leaf which was assigned to Product
+  # Returns Category's leaf which was assigned to Product directly
   #
   def category
-    categories.order('updated_at DESC').first
+    # categories.order('updated_at DESC').first
+    categories.last
+  end
+
+  def nested_additional_fields
+    category.nested_additional_fields
   end
 
   protected
+
+  # def assign_additional_fields
+  #   self.additional_fields = {}
+  #   category.additional_fields.each{|key, value| self.additional_fields[key] = nil }
+  #   save!
+  # end
 
   def assign_product_to_parent_categories
     #Remove all previous categorizations for product except last updated 

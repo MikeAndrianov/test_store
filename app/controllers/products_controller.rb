@@ -5,8 +5,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.with_category(params[:category])
-                       .simple_search(params[:query])
+    @products = Product.simple_search(params[:query])
+                       .with_category(params[:category])
                        .paginate(:page => params[:page], :per_page => 10)
   end
 
@@ -19,11 +19,25 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @categorization = @product.categorizations.build
+
+    @obj_with_additional_fields = params[:category] ? Category.find(params[:category]) : Category.first
+
+    respond_to do |format|
+      format.html
+      format.js { render :template => "/products/edit", :locals => { :selected_category => Category.find(params[:category]) } }
+    end
   end
 
   # GET /products/1/edit
   def edit
     @categorization = Categorization.find_all_by_product_id_and_category_id(@product.id, @product.category.id)
+
+    @obj_with_additional_fields = params[:category] ? Category.find(params[:category]) : @product
+
+    respond_to do |format|
+      format.html
+      format.js { render :template => "/products/edit", :locals => { :selected_category => Category.find(params[:category]) } }
+    end
   end
 
   # POST /products

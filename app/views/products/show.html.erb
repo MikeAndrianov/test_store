@@ -13,6 +13,13 @@
   <%= @product.price %>
 </p>
 
+<% @product.additional_fields.each do |key, value| %>
+  <p>
+    <strong> <%= key %></strong>
+    <%= value %>
+  </p>
+<% end %>
+
 <p>
   <strong>Product belongs to the next categories: </strong> 
   <%= @product.categories.map(&:name).join ', ' %>
