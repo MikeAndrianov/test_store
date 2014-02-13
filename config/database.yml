@@ -15,13 +15,3 @@ test:
   username: mike
   password: mike
   host: 127.0.0.1
-
-
-development:
-  adapter: postgresql
-  encoding: utf8
-  database: test_store_dev
-  pool: 5
-  username: mike
-  password: mike
-  host: 127.0.0.1

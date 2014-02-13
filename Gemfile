@@ -55,6 +55,12 @@ gem 'friendly_id'
 
 gem 'heroku'
 
+group :production do
+  #for heroku assets compiling
+  #
+  gem 'rails_12factor'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
