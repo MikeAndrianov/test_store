@@ -48,11 +48,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # gem "ransack"
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'formtastic',          github: 'justinfrench/formtastic'
-#gem "tire", git: "git://github.com/karmi/tire.git"
-
-gem "elasticsearch", git: "git@github.com:elasticsearch/elasticsearch-ruby.git"
-gem "elasticsearch-model", git: "git@github.com:elasticsearch/elasticsearch-rails.git"
-gem "elasticsearch-rails", git: "git@github.com:elasticsearch/elasticsearch-rails.git"
 
 gem "awesome_nested_set"
 
@@ -61,6 +56,7 @@ gem 'will_paginate-bootstrap'
 
 gem 'friendly_id'
 
+gem 'heroku'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -73,3 +69,5 @@ gem 'friendly_id'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+ruby "2.0.0"
