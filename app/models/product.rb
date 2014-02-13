@@ -1,12 +1,6 @@
 class Product < ActiveRecord::Base
-  # include Tire::Model::Search
-  # include Tire::Model::Callbacks
-
   extend FriendlyId
   friendly_id :name, :use => :slugged
-
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
 
   after_save :assign_product_to_parent_categories
   # after_create :assign_additional_fields
