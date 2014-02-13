@@ -48,6 +48,10 @@
   .empty-here{
     color: #999;
   }
+
+  .col-md-4:nth-child(3n+2){
+    clear:both;
+  }
 }
 
 .breadcrumb{
