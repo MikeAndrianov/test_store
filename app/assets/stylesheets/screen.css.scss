@@ -52,6 +52,14 @@
   .col-md-4:nth-child(3n+2){
     clear:both;
   }
+
+  td{
+    max-width: 450px;
+  }
+
+  textarea{
+    height: 90px;
+  }
 }
 
 .breadcrumb{
