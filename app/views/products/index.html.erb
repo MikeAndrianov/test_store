@@ -10,6 +10,7 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
+          <th>Additional fields</th>
           <th>Category</th>
           <th>Price</th>
         </tr>
@@ -20,7 +21,14 @@
           <tr>
             <td><%= link_to product.name, product %></td>
             <td><%= product.description %></td>
-            <td><%= product.categories.map(&:name).join ', ' %></td>
+            <td>
+              <ul class="list-unstyled">
+                <% product.additional_fields.each do |key, value| %>
+                  <li> <%= "#{key}: #{value}" unless value.blank? %> </li>
+                <% end %>
+              </ul>
+            </td>
+            <td><%= product.categories.map{|category| link_to category.name, products_path(:category => category.slug)}.join(", ").html_safe %></td>
             <td><%= number_to_currency product.price %></td>
           </tr>
         <% end %>

@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
   friendly_id :name, :use => :slugged
 
   after_save :assign_product_to_parent_categories
-  # after_create :assign_additional_fields
 
   validates :name, :price, :presence => true
   validates :name, :uniqueness => true
@@ -26,7 +25,6 @@ class Product < ActiveRecord::Base
   # Returns Category's leaf which was assigned to Product directly
   #
   def category
-    # categories.order('updated_at DESC').first
     categories.last
   end
 
@@ -35,12 +33,6 @@ class Product < ActiveRecord::Base
   end
 
   protected
-
-  # def assign_additional_fields
-  #   self.additional_fields = {}
-  #   category.additional_fields.each{|key, value| self.additional_fields[key] = nil }
-  #   save!
-  # end
 
   def assign_product_to_parent_categories
     #Remove all previous categorizations for product except last updated 

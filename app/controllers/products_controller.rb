@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_category, only: [:index, :show, :new, :edit]
+  before_action :set_obj_with_additional_fields, only: [:new, :create]
 
   # GET /products
   # GET /products.json
@@ -19,8 +20,6 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @categorization = @product.categorizations.build
-
-    @obj_with_additional_fields = params[:category] ? Category.find(params[:category]) : Category.first
 
     respond_to do |format|
       format.html
@@ -94,5 +93,9 @@ class ProductsController < ApplicationController
     def product_params
       #params.require(:product).permit(:name, :price, :description)
       params.require(:product).permit!
+    end
+
+    def set_obj_with_additional_fields
+      @obj_with_additional_fields = params[:category] ? Category.find(params[:category]) : Category.first
     end
 end
